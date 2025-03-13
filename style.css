@@ -224,12 +224,15 @@ footer div {
 
 #student-table td:last-child {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: 5px; 
+  align-items: center;
 }
   
 /* Responsive Design: Stack sections on small screens */
 @media (max-width: 768px) {
-body {
-    grid-template-columns: 1fr;
+  body {
+      grid-template-columns: 1fr;
+  }
 }
-}
+
