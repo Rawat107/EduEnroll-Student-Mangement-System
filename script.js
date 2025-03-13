@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // getting form
-    const from = document.getElementById('student-form');
+    const form = document.getElementById('student-form');
     
     // getting display table
     const tableBody = document.querySelector('#student-table tbody');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showStudents();
     
     // collection data on submit
-    from.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const name = document.getElementById('name').value.trim();
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         };
     
-        if (isNaN(id) || idNaN(contact)) {
+        if (isNaN(id) || isNaN(contact)) {
             alert('student ID and Contact must be numbers');
             return;
         };
@@ -48,19 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const student = { name, id, email, contact};
 
-        if (editingId != null) {
+        if (editingId !== null) {
+            // Update existing student
             const index = students.findIndex(s => s.id === editingId);
             students[index] = student;
             editingId = null;
             submitBtn.textContent = 'Add Student';
         } else {
+            // Add new student
             students.push(student);
         }
 
 
         localStorage.setItem('students', JSON.stringify(students));
         showStudents();
-        from.reset();
+        form.reset();
         
     });
 
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fa-solid fa-edit"></i> Edit
                     </button>
                     <button class='delete-btn' data-id="${student.id}">
-                        <i class="fa-solid fa-trash"></i> Edit
+                        <i class="fa-solid fa-trash"></i> Delete
                     </button>
                 </td>
             `;
